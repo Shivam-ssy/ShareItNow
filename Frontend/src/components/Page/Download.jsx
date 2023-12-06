@@ -13,7 +13,7 @@ import config from "../../../Conf/cofig";
                 console.log(dt)
                 setName(dt.filename)
                 setSize(`${(dt.filesize/1024).toFixed(2)} KB`)
-                setDlink(dt.download)
+                setDlink(`${config.server}${dt.download}`)
         }
         detail()
         const handleDownload= ()=>{

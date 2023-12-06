@@ -139,7 +139,7 @@ app.post(`${process.env.UPLOAD_URL}`,(req,res)=>{
               size: req.file.size
           });
           const response = await file.save();
-          res.json({status:"File Uploaded Successfully", file: `${process.env.BACKEND_URL}/files/${response.uuid}` });
+          res.json({status:"File Uploaded Successfully", file: `/files/${response.uuid}` });
         }else{
             res.send({status :"!something went wrong file not recived ?File is greater than 200MB"})
         }
@@ -165,7 +165,7 @@ app.get(`${process.env.DOWNLOAD_URL}`, async (req,res)=>{
             uuid:fl.uuid,
             filename:fl.filename,
             filesize:fl.size,
-            download:`${process.env.BACKEND_URL}/files/download/${fl.uuid}`
+            download:`/files/download/${fl.uuid}`
         })
     }catch(err){
         console.log(err)
