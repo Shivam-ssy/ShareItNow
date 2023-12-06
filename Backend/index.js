@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use(session({
-    secret: 'Sharing1234',
+    secret: process.env.SECREATE_KEY,
   resave: false,
   saveUninitialized: true,
   cookie: {
