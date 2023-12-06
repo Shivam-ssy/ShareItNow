@@ -7,7 +7,9 @@
   "scripts": {
     "start": "nodemon server.js"
   },
- 
+ "engines": {
+  "node": ">=18.18.0 <19.0.0"
+}
   "author": "Shivam Singh Yadav",
   "license": "ISC",
   "dependencies": {
