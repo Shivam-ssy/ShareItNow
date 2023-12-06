@@ -1,0 +1,26 @@
+
+.shadow{
+    text-shadow: 2px 2px 4px #4e4c4d;
+    color:#ce3f21;
+
+}
+.round{
+    border-radius: 80px 10px 10px 10px;
+}
+.shadow1{
+    text-shadow: 2px 2px 4px #4e4c4d;
+    color:#ce3f21;
+}
+.alertShadow{
+    border:solid 1px #ce3f21;
+    background-color: #ce3e215a;
+}
+.dropbox{
+    background-color:#ce3f21 ;
+}
+    @media screen and (max-width:400px){
+        .dropbox{
+        background-color:rgb(191,219,254 );
+        }
+    }
+    
