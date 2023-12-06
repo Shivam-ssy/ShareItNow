@@ -15,7 +15,7 @@ config()  //config is used to config the dot env variable in our server.js files
 const app=express()
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://share-it-now-8sn5.vercel.app/",
     credentials:true
 })); //cors are used for the cross url connection communication eg: server are running at -3000 and frontend at 5173
 app.use(express.json())
