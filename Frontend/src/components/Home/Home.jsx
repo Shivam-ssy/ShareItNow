@@ -28,7 +28,7 @@ function Home(){
            
         },[])
         
-             if(validUser){
+             if(!validUser){
                 return (
                     <>
                     <HeaderHome name={isuser} className=" fixed w-full"/>
