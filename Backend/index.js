@@ -79,7 +79,7 @@ app.post(`${process.env.LOGIN_URL}`, async (req,res)=>{
    if(user){
     if(user.password == req.body.password){
         req.session.userSession={name:user.name};
-        res.cookie('sessionId', req.sessionID, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
+        res.cookie('sessionId', req.sessionID, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true,sameSite:'none' ,secure:true});
         res.send({status:true, user:true }) 
     }
     else
