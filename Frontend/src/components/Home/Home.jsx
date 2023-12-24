@@ -20,6 +20,7 @@ function Home(){
                     if(fetchData.user){
                         setValidUser(fetchData.user)
                         setUser(fetchData.userdata.name)
+                        
                       
                     }
                 }
@@ -29,6 +30,7 @@ function Home(){
         },[])
         
              if(!validUser){
+                console.log(isuser)
                 return (
                     <>
                     <HeaderHome name={isuser} className=" fixed w-full"/>
