@@ -30,7 +30,7 @@ function Home(){
         },[])
         
              if(!validUser){
-                console.log(isuser)
+               
                 return (
                     <>
                     <HeaderHome name={isuser} className=" fixed w-full"/>
