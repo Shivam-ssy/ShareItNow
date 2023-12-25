@@ -9,12 +9,13 @@ import config from "../../../Conf/cofig";
 function Home(){
         const [isuser,setUser]=useState(null)
         const [validUser,setValidUser]=useState(false)
+        const [loader,setloader]=useState(true);
         useEffect(()=>{ 
             const fetchUser= async ()=>{
                 const fetchData= await fetch(config.homeUrl,{
                     method:'GET',
                     credentials:'include',
-                }).then((fetchData)=>fetchData.json())
+                }).then((fetchData)=>fetchData.json()). finally(()=>setloader(false))
                 console.log(fetchData)
                 if(fetchData.status){
                     if(fetchData.user){
@@ -28,7 +29,7 @@ function Home(){
             fetchUser();
            
         },[])
-        
+        if(!loader){
              if(!validUser){
                 console.log(isuser)
                 return (
@@ -67,7 +68,7 @@ function Home(){
                     </>
                 )
              }
-           
+        }
 
         }    
    
