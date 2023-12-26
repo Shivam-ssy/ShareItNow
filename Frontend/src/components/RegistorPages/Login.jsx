@@ -13,8 +13,8 @@ function Login(){
    
     const response= await fetch(config.loginUrl,{
      method:'POST',
-     credentials:'include',
      mode:'cors',   
+     credentials:'include',
       headers:{
             
             'Content-Type':'application/json'
