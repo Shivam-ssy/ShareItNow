@@ -30,7 +30,7 @@ function Home(){
            
         },[])
         if(!loader){
-             if(!validUser){
+             if(validUser){
                
                 return (
                     <>
