@@ -13,7 +13,7 @@ import cookieParser from "cookie-parser";
 const port=process.env.PORT || 3000
 config()  //config is used to config the dot env variable in our server.js files 
 const app=express()
-
+const MemoryStore = session.MemoryStore;
 app.use(cors({
     origin:"https://share-it-now-8sn5.vercel.app",
     credentials:true
@@ -29,7 +29,7 @@ app.use(session({
     httpOnly:true,
     maxAge: 1000 * 60 * 60 * 24,
   },
-    store: new (require('express-session').MemoryStore)(),
+     store: new MemoryStore(),
 }))
 //Database connection 
 ;(
