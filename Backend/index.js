@@ -28,6 +28,7 @@ app.use(session({
     secure: true,
     maxAge: 1000 * 60 * 60 * 24,
   },
+    store: new (require('express-session').MemoryStore)(),
 }))
 //Database connection 
 ;(
