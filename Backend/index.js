@@ -30,7 +30,6 @@ app.use(session({
     httpOnly:true,
     maxAge: 1000 * 60 * 60 * 24,
   },
-     store: new session.MemoryStore)(),
 }))
 //Database connection 
 ;(
