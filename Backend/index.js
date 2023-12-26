@@ -15,8 +15,10 @@ config()  //config is used to config the dot env variable in our server.js files
 const app=express()
 const MemoryStore = session.MemoryStore;
 app.use(cors({
-    origin:"https://share-it-now-8sn5.vercel.app",
-    credentials:true
+    origin: process.env.frontend_url || "https://share-it-now-8sn5.vercel.app",
+    credentials:true,
+     exposedHeaders: ['Content-Length', 'Authorization'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 })); //cors are used for the cross url connection communication eg: server are running at -3000 and frontend at 5173
 app.use(express.json())
 app.use(cookieParser())
