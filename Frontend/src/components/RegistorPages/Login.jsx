@@ -13,7 +13,7 @@ function Login(){
    
     const response= await fetch(config.loginUrl,{
      method:'POST',
-     mode:'cors',   
+   
      credentials:'include',
       headers:{
             
