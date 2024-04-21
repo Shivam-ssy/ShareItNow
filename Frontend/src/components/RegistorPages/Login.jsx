@@ -16,7 +16,7 @@ function Login(){
         }
     const response= await fetch(config.loginUrl,{
      method:'POST',
-    
+     mode: 'no-cors', 
      credentials:'include',
       headers:{
             'Content-Type':'application/json',

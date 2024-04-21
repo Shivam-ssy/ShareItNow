@@ -11,6 +11,7 @@ function SignUp(){
         
           const response =await fetch(config.registerUrl,{
             method:'POST',
+            
             headers:{
               'Content-Type':'application/json',
             },
