@@ -13,9 +13,6 @@ function Home() {
   useEffect(()=>{
       const fetchUser= async ()=>{
           const fetchData= await fetch(config.getCurrentUser,{
-            headers:{
-              'Accept':'*/*'
-          },
               method:'GET',
               credentials:'include',
           })

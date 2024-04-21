@@ -20,7 +20,6 @@ function Login(){
      credentials:'include',
       headers:{
             'Content-Type':'application/json',
-            'Accept':'*/*'
         },
         body:JSON.stringify({
             email,

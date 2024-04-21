@@ -34,9 +34,7 @@ import { useEffect } from "react";
     useEffect(()=>{
               const fetchUser= async ()=>{
                   const fetchData= await fetch(config.getFiles,{
-                    headers:{
-                      'Accept':'*/*'
-                  },
+                  
                       method:'GET',
                       credentials:'include',
                   })
