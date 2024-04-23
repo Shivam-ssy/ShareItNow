@@ -10,7 +10,8 @@ const options = {
    
     httpOnly:true,
     secure:true,
-    maxAge:3600000
+    maxAge:3600000,
+   sameSite: 'None'
 }
 
 async function mailer(recieveremail, filesenderemail) {

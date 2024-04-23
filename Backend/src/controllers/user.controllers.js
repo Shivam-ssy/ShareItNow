@@ -9,7 +9,8 @@ const options = {
    
     httpOnly:true,
     secure:true,
-    maxAge:3600000
+    maxAge:3600000,
+    sameSite: 'None'
 }
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
