@@ -2,11 +2,12 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
+
 const app = express()
 
 
 app.use(cors({
-  origin: process.env.frontend_url,
+  origin:process.env.frontend_url,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials:true,
@@ -26,5 +27,7 @@ app.use("/api/v1/users", userRouter)
 app.use("/api/v1/files", fileRouter)
 
 // http://localhost:8000/api/v1/users/register
+
+
 
 export { app }

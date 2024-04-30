@@ -1,11 +1,16 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import config from "../../../Conf/cofig";
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 function Drop({ onDrop, accept }) {
   const [acceptedLink, setacceptedLink] = useState("");
   const [recEmail, setRecEmail]= useState("")
-  const [file,setfile]=useState([])
+  const [file,setfile]=useState(null)
+  const [progress, setProgress] = useState(0);
   console.log(recEmail)
   const {
     getRootProps,
@@ -32,22 +37,36 @@ function Drop({ onDrop, accept }) {
   }, [acceptedLink]);
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log("Uploaded files:", file);
+   console.log("Uploaded files:", file);
+   
     if (file) {
       if (file.length > 1) {
-        alert("More than (1) file ");
+        toast.error("More than (1) file ");
       } else {
+        toast.success("Uploading started");
         const formData = new FormData();
         formData.append("file", file[0]);
         formData.append("email",recEmail)
 
-        const UploadUrlData = await fetch(config.uploadUrl, {
-          method: "POST",
-          credentials:'include',
-          body: formData,
-        });
+        // const UploadUrlData = await fetch(config.uploadUrl, {
+        //   method: "POST",
+        //   credentials:'include',
+        //   body: formData,
+        // });
+        await axios({
+          method: 'POST',
+          withCredentials:true,
+          url: config.uploadUrl,
+          data: formData,
+          onUploadProgress: (progressEvent) => {
+              let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+              setProgress(percentCompleted);
+              console.log(progress)
+          }
+      });
         if(UploadUrlData.ok)
-        alert(UploadUrlData.status);
+        toast.success("File has been Uploaded");
+      console.log(progress)
         const temp = await fetch(UploadUrlData.file).then((res) => res.json());
         setacceptedLink(`${config.downloadPage}/${temp.uuid}`);
         console.log(UploadUrlData);
@@ -56,6 +75,8 @@ function Drop({ onDrop, accept }) {
   }
   return (
     <>
+      <ToastContainer className="mt-20" position="top-right" autoClose={5000} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+
       <div className="w-full h-5/6 md:h-screen flex md:flex-row flex-col justify-around items-center">
         <div className="dropbox shadow-xl shadow-slate-300 rounded-3xl p-7">
           <div
@@ -88,6 +109,12 @@ function Drop({ onDrop, accept }) {
           </div>
         </div>
       <div className=" bg-blue-200 flex p-5 gap-5 flex-col justify-center items-start">
+      {file && <div>Selected file: {file[0]?.name}</div>
+      } 
+      {
+        progress > 1?( <div>Uploading: {progress}%</div>):(<div></div>)
+      } 
+     
         <div className="flex flex-col gap-2 ">
           <label className="font-bold" htmlFor="email">Receiver Email Address</label>
           <input

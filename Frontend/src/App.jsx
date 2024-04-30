@@ -5,7 +5,10 @@ import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import config from "../Conf/cofig";
 import "./App.css";
+import Navigators from "./components/Header/Header";
 import { Outlet } from "react-router-dom";
+
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,10 +37,12 @@ function App() {
   return (
     <>
       <div className="w-full h-auto flex flex-col">
-        <div>
-        {validUser && <HeaderHome name={isuser} className=" fixed w-full" />}
-        </div>
+        <Navigators/>
+      {validUser &&  <div className="h-20">
+         <HeaderHome name={isuser} className=" fixed w-full" />
+        </div>}
         <Outlet />
+
       </div>
     </>
   );

@@ -3,6 +3,11 @@ import { useNavigate,Link } from "react-router-dom";
 import { useState } from "react";
 import config from "../../../Conf/cofig";
 import axios from "axios"
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 function Login(){
     
     const [email,setEmail]=useState("");
@@ -31,24 +36,25 @@ function Login(){
         }
         else{
             if(response.status===400) {
-                alert(" Email is required")
+                toast.error(" Email is required")
             } 
            else if(response.status===404){
-                alert("User does not exist")
+            toast.error("User does not exist")
             }
             else if(response.status===401){
-                alert("Invalid user credentials")
+                toast.error("Invalid user credentials")
             }
             else{
-                alert(response.message || "Something went wrong plese try again later")
+                toast.error( "Something went wrong plese try again later")
             }
         }
         
 }
     return(
         <>
-       
+
        <div className="flex justify-center w-full h-screen items-center px-3">
+            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <div className="flex justify-center items-center w-fit flex-col px-5 py-2 shadow-xl shadow-slate-700">
            <div className="flex flex-wrap flex-col justify-center mb-10 items-center">
            <h1 className="font-extrabold text-5xl shadow">ShareItNow</h1>

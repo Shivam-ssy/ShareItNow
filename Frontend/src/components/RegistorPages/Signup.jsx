@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from "react";
 import {Link} from "react-router-dom"
 import config from "../../../Conf/cofig";
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function SignUp(){
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
@@ -23,21 +27,22 @@ function SignUp(){
           })
           console.log(response)
           if(response.status===200 || response.status ===201){
-            alert("Register Successfully")
+            // alert("Register Successfully")
+            toast.success("Signup successfull");
           }
           else{
             if(response.status===400){
-              alert("All fields are required")
+              toast.error("All fields are required")
             }
             else if(response.status===409){
-              alert("User with email  already exists")
+              toast.error("User with email  already exists")
               console.log(response.message);
             }
             else if(response.status===500){
-              alert("Something went wrong please try again")
+              toast.error("Something went wrong please try again")
             }
             else{
-              alert("Something went wrong")
+              toast.error("Something went wrong")
             }
           }
         
@@ -75,7 +80,8 @@ function SignUp(){
 
     return(
         <>
-       
+          <ToastContainer position="top-right" autoClose={5000} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+
        <div className="flex justify-center w-full h-screen items-center px-3">
         <div className="flex justify-center items-center w-fit flex-col px-5 py-2 shadow-xl shadow-slate-700">
            <div className="flex flex-wrap flex-col justify-center mb-10 items-center">

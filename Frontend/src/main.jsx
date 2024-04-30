@@ -12,6 +12,7 @@ import Download from './components/Page/Download.jsx'
 import Myfile from './components/mainRoutes/Myfiles.jsx'
 import SharePage from './components/mainRoutes/Share.jsx'
 import DirectShare from './components/mainRoutes/DirectShare.jsx'
+import Profile from './components/mainRoutes/Profile.jsx'
 const data=localStorage.getItem('token');
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router=createBrowserRouter(
    <Route path='/Home/share/directshare' element={<DirectShare/>}/> 
    <Route path='/Home/myfile' element={<Myfile/>}/>
     <Route path='/download/:uuid' element={<Download/>}/>
+    <Route path='/home/profile' element={<Profile/>}/>
     </Route>
   )
 )

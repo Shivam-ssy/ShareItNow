@@ -34,23 +34,24 @@ function Home() {
       return (
         <>
           <div
-            className="w-full h-screen grid grid-cols-2 items-center justify-items-center p-2"
+            className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-items-center p-2"
             style={{
-                backgroundImage: `linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)`
+              backgroundImage: `linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)`
             }}
           >
+            
             {/* <Drop/> */}
-            <div>
-            <div className="flex flex-col text-[5em]  text-white leading-[0.98em] font-serif ">
+            <div className="h-96 md:h-auto">
+            <div className="flex  flex-col text-[3em] md:text-[5em]  text-white leading-[0.98em] font-serif ">
              <span className="font-thin">Welcome <br /> to the world of <br /></span> 
              <span className="text-[#ce3f21] font-bold">Sharing</span> 
             </div>
-            <div className="text-white mt-2">Here you can upload your file and you can get a link to share or you can direcly <br/> your file to another user</div>
+            <div className="text-white text-sm mt-2">Here you can upload your file and you can get a link to share or you can direcly <br/> your file to another user</div>
             <Link to="/Home/share/upload">
                <div className="flex items-center duration-200 hover:ease-out hover:shadow-black hover:shadow-xl hover:px-3  hover:font-bold cursor-pointer w-fit p-2 rounded-xl mt-5 bg-[#ce3f21]">Lets get started <img width="20px" src="/arrow-right-line.svg" alt="" /></div>  </Link>
             </div>
            
-            <div className="w-[30vw] h-40">
+            <div className=" w-3/4 md:w-[30vw] h-96 md:h-40">
                 <img className="rounded-xl rotate-45" src="background.jpg" alt="" />
             </div>
           </div>

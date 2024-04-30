@@ -3,13 +3,18 @@ import React from "react";
 
     return(
         <>
-        <div className="flex justify-center w-full py-4 bottom-0 absolute ">
-            <div className="flex  justify-center py-2 gap-3 w-full bg-black  ">
-                <button className="bg-blue-500 rounded-xl p-2 text-white font-bold">Home</button>
-                <button className="text-white font-bold">Notification</button>
+        <div className="fixed block md:hidden mt-2 top-20 bg-white z-50 right-4 ">
 
+        <div className="flex justify-center">
+            <div className="flex  justify-center  flex-col   w-full   ">
+               <div className="py-3 px-8 cursor-default hover:bg-gray-500 ">Home</div>
+               <div className="py-3 px-8 cursor-default hover:bg-gray-500 ">Myfile</div>
+               <div className="py-3 px-8 cursor-default hover:bg-gray-500 ">Share Directly</div>
+               <div className="py-3 px-8 cursor-default hover:bg-gray-500 ">Upload</div>
+               <div className="py-3 px-8 cursor-default hover:bg-gray-500 ">Profile</div>
             </div>
 
+        </div>
         </div>
         </>
     )

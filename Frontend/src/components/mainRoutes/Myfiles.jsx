@@ -60,7 +60,7 @@ import { useEffect } from "react";
     }
     return(
         <>
-        <div className="w-full mt-20 h-screen flex items-center justify-center"
+        <div className="w-full  h-screen flex items-center justify-center"
          style={{
             backgroundImage: `linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)`
         }}>
