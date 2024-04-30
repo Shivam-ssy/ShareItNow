@@ -28,10 +28,6 @@ app.use("/api/v1/files", fileRouter)
 
 // http://localhost:8000/api/v1/users/register
 
-<<<<<<< HEAD
-
 
 export { app }
-=======
-export { app }
->>>>>>> 3d1fe2db2de4130f34bbba2d09b8299b3f996139
+
