@@ -14,7 +14,7 @@ app.use(cors({
 })); 
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
-
+app.use(express.static('uploads'));
 app.use(cookieParser())
 
 
@@ -28,6 +28,10 @@ app.use("/api/v1/files", fileRouter)
 
 // http://localhost:8000/api/v1/users/register
 
+<<<<<<< HEAD
 
 
 export { app }
+=======
+export { app }
+>>>>>>> 3d1fe2db2de4130f34bbba2d09b8299b3f996139
