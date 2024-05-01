@@ -4,6 +4,7 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { Users } from "../models/UserModule.models.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import fs from "fs"
+import path from "path"
 import nodemailer from 'nodemailer'
 
 const options = {
@@ -42,7 +43,9 @@ async function mailer(recieveremail, filesenderemail) {
 
   const fileUpload= asyncHandler(async(req,res)=>{
     // console.log(req.file);
-    const fileLocalPath = req.file?.path;
+    const uploadPath = req.file?.path;
+    const fileLocalPath = path.join(__dirname, uploadPath);
+
     if(!fileLocalPath){
        throw new ApiError(400, "Please upload a valid file");
     }
