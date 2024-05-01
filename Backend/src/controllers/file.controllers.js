@@ -45,7 +45,7 @@ async function mailer(recieveremail, filesenderemail) {
     // console.log(req.file);
     const uploadPath = req.file?.path;
     const fileLocalPath = path.join(__dirname, uploadPath);
-
+    console.log(fileLocalPath)
     if(!fileLocalPath){
        throw new ApiError(400, "Please upload a valid file");
     }
