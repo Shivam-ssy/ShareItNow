@@ -6,7 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import fs from "fs"
 import path from "path"
 import nodemailer from 'nodemailer'
-
+import { fileURLToPath } from 'url'
 const options = {
    
     httpOnly:true,
@@ -43,8 +43,11 @@ async function mailer(recieveremail, filesenderemail) {
 
   const fileUpload= asyncHandler(async(req,res)=>{
     // console.log(req.file);
-    const uploadPath = req.file?.path;
-    const fileLocalPath = path.join(__dirname, uploadPath);
+  const uploadPath = req.file?.path;
+    const __filenameNew = fileURLToPath(import.meta.url)
+    
+    const __dirnameNew = path.dirname(__filenameNew)
+    const fileLocalPath = path.join(__dirnameNew, uploadPath);
     console.log(fileLocalPath)
     if(!fileLocalPath){
        throw new ApiError(400, "Please upload a valid file");
