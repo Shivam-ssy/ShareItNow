@@ -9,27 +9,11 @@
         }
       }
     ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.html",
-        "headers": {
-          "cache-control": "s-maxage=1, stale-while-revalidate"
-        }
-      }
-    ],
-    
+   
       "rewrites":  [
         {"source": "/(.*)", "destination": "/"}
       ]
-    ,
-    "env": {
-      "VITE_API_URL": "@vite_api_url"
-    },
-    "build": {
-      "env": {
-        "VITE_API_URL": "@vite_api_url"
-      }
-    }
+   
+   
   }
   
