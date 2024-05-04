@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
            <Link to="/Home"> <div className="cursor-pointer">Home</div></Link>
            <Link to="/Home/myfile"> <div className="cursor-pointer">My files</div></Link>
            <Link to="/Home/share/upload"> <div className="cursor-pointer">Upload File</div></Link>
-           <Link to="/Home/share/directshare"> <div className="cursor-pointer">Share directly</div></Link>
+           {/* <Link to="/Home/share/directshare"> <div className="cursor-pointer">Share directly</div></Link> */}
          <Link to="/Home/profile">  <div className="outline-none ms-9 flex items-center gap-2 px-2 py-1 font-bold text-white"><img  width="20px" src="/user-3-fill.svg" alt="" />{name}</div></Link> 
             
           </div>

@@ -10,6 +10,7 @@ const config={
     downloadPage:String(import.meta.env.VITE_DOWNLOAD_PAGE),
     getCurrentUser:String(import.meta.env.VITE_GET_CURRENT_USER),
     getFiles:String(import.meta.env.VITE_GET_FILES),
-    logout:String(import.meta.env.VITE_LOGOUT_USER)
+    logout:String(import.meta.env.VITE_LOGOUT_USER),
+    changePassword:String(import.meta.env.VITE_CHANGE_PASSWORD)
 }
 export default config

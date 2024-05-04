@@ -12,6 +12,9 @@ function Drop({ onDrop, accept }) {
   const [file,setfile]=useState(null)
   const [progress, setProgress] = useState(0);
   console.log(recEmail)
+  useEffect(()=>{
+    setProgress(0)
+  },[file])
   const {
     getRootProps,
     getInputProps,
@@ -53,7 +56,7 @@ function Drop({ onDrop, accept }) {
         //   credentials:'include',
         //   body: formData,
         // });
-        await axios({
+         await axios({
           method: 'POST',
           withCredentials:true,
           url: config.uploadUrl,
@@ -61,15 +64,27 @@ function Drop({ onDrop, accept }) {
           onUploadProgress: (progressEvent) => {
               let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
               setProgress(percentCompleted);
-              console.log(progress)
+              
           }
-      });
-        if(UploadUrlData.ok)
+      }).then((res)=>{
+        if(res.data.statusCode===200)
         toast.success("File has been Uploaded");
-      console.log(progress)
-        const temp = await fetch(UploadUrlData.file).then((res) => res.json());
-        setacceptedLink(`${config.downloadPage}/${temp.uuid}`);
-        console.log(UploadUrlData);
+       
+      }).catch((error)=>{
+        if(error.response.status===400){
+          toast.error('Reciever email is either not registered or not found')
+        }
+        else{
+          toast.error("Something went wrong while uploading")
+        }
+      })
+     
+      // console.log(UploadUrlData.data.statusCode)
+       
+      // console.log(progress)
+        // const temp = await fetch(UploadUrlData.file).then((res) => res.json());
+        // // setacceptedLink(`${config.downloadPage}/${temp.uuid}`);
+        // console.log(UploadUrlData);
       }
     }
   }

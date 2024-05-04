@@ -2,9 +2,13 @@ import {v2 as cloudinary} from "cloudinary"
 import { log } from "console";
 import fs from "fs"
 
-let name=process.env.CLOUDINARY_CLOUD_NAME
-let key=process.env.CLOUDINARY_API_KEY
-let secret=process.env.CLOUDINARY_API_SECRET
+let name="shivamssy"
+let key="283899533944943"
+let secret="CCLCVLBPtINyFhcFG4Ka54EOaPY"
+
+// let name=process.env.CLOUDINARY_CLOUD_NAME
+// let key=process.env.CLOUDINARY_API_KEY
+// let secret=process.env.CLOUDINARY_API_SECRET
 cloudinary.config({ 
   cloud_name:name,
   api_key:key, 
@@ -39,7 +43,7 @@ const uploadOnCloudinary = async (localFilePath) => {
 
 async function deleteFileFromCloudinary(publicId) {
     try {
-        const result = await cloudinary.v2.uploader.destroy(publicId);
+        const result = await cloudinary.uploader.destroy(publicId);
         console.log('Deleted file from Cloudinary:', result);
         return result; // This includes the result of the deletion operation
     } catch (error) {
