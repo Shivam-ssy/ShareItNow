@@ -80,7 +80,7 @@ async function mailer(recieveremail, filesenderemail) {
       
       
         const file = await uploadOnCloudinary(temporary)
-        console.log(file);
+        console.log("cloudinary upload error",file);
         senderuser.files.push({
           senderemail: senderuser.email,
           receiveremail: receiveremail,
