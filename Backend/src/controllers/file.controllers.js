@@ -75,8 +75,16 @@ async function mailer(recieveremail, filesenderemail) {
           throw new ApiError(400, "Reciever Email cannot be same as sender")
       }
 
-
-      const file = await uploadOnCloudinary(fileLocalPath)
+      fs.access(fileLocalPath, fs.constants.F_OK, (err) => {
+        if (err) {
+          console.error('File does not exist:', fileLocalPath);
+        } else {
+          console.log('File exists:', fileLocalPath);
+          // proceed with your logic
+        }
+      });
+      let file;
+      file = await uploadOnCloudinary(fileLocalPath)
       console.log(file);
       senderuser.files.push({
           senderemail: senderuser.email,
