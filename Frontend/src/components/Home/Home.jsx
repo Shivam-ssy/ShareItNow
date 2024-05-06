@@ -60,7 +60,6 @@ function Home() {
     } else {
       return (
         <>
-          <HeaderHome name="!User" />
           <div className="w-full h-screen bg-slate-600 flex items-center justify-center p-2">
             <div className="bg-blue-200  shadow-xl shadow-slate-300 rounded-3xl p-7">
               <div>
