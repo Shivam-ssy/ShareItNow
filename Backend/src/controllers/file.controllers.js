@@ -44,6 +44,8 @@ async function mailer(recieveremail, filesenderemail) {
   const fileUpload= asyncHandler(async(req,res)=>{
     // console.log(req.file);
     const fileLocalPath = req.file?.path;
+    const temporary= path.resolve(fileLocalPath)
+    console.log(temporary);
     if(!fileLocalPath){
        throw new ApiError(400, "Please upload a valid file");
     }
@@ -56,28 +58,28 @@ async function mailer(recieveremail, filesenderemail) {
       let senderuser = await Users.findOne({ _id: req.user._id });
       let recieveruser = await Users.findOne({ email: receiveremail });
       if (!senderuser) {
-         fs.unlinkSync(fileLocalPath)
+         fs.unlinkSync(temporary)
           throw new ApiError(400, "Sender email is not registered")
       }
 
   
       if (!recieveruser) {
 
-         fs.unlinkSync(fileLocalPath)
+         fs.unlinkSync(temporary)
 
           throw new ApiError(400, "Reciever email is not registered")
       }
 
       console.log(receiveremail)
       if (senderuser.email === receiveremail) {
-        fs.unlinkSync(fileLocalPath)
+        fs.unlinkSync(temporary)
 
           throw new ApiError(400, "Reciever Email cannot be same as sender")
       }
 
       
       
-        const file = await uploadOnCloudinary(fileLocalPath)
+        const file = await uploadOnCloudinary(temporary)
         console.log(file);
         senderuser.files.push({
           senderemail: senderuser.email,
