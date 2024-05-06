@@ -2,17 +2,17 @@ import { Users } from "../models/UserModule.models.js"
 import cron from 'node-cron';
 import { deleteFileFromCloudinary } from "./cloudinary.js";
 async function removeOldFiles() {
-    const users = await Users.find({"files.sharedAt": {$lte: new Date(Date.now() - 24*60*60*1000)}});
+    const users = await Users.find({"files.sharedAt": {$lte: new Date(Date.now() - 10*60*1000)}});
   
     const deletionPromises = users.map(user => {
-        const filesToDelete = user.files.filter(file => new Date(file.sharedAt) <= new Date(Date.now() - 24*60*60*1000));
+        const filesToDelete = user.files.filter(file => new Date(file.sharedAt) <= new Date(Date.now() - 10*60*1000));
 
         // Delete each file from Cloudinary
-        const cloudinaryDeletions = filesToDelete.map(file => deleteFileFromCloudinary(file.fileurl));
+        const cloudinaryDeletions = filesToDelete.map(file => deleteFileFromCloudinary(file.fileId));
 
         // Once all Cloudinary deletions are done, update the user's files array
         return Promise.all(cloudinaryDeletions).then(() => {
-            user.files = user.files.filter(file => new Date(file.sharedAt) > new Date(Date.now() - 24*60*60*1000));
+            user.files = user.files.filter(file => new Date(file.sharedAt) > new Date(Date.now() - 10*60*1000));
             return user.save();
         });
     });

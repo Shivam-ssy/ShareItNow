@@ -5,6 +5,7 @@ import bcrypt from "bcrypt"
 const fileSchema = new mongoose.Schema({
     senderemail: {required:true , type:String},
     receiveremail: {required:true , type:String},
+    fileId:{required:true,type:String},
     fileurl: {required:true , type:String},
     filename: {required:true , type:String},
     sharedAt: {required:true , type:Date},

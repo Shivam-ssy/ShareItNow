@@ -8,7 +8,7 @@
     "start": "nodemon index.js",
     "dev": "node index.js",
     "client-start": "npm run dev --prefix Frontend",
-    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
+    "build": "npm install"
   },
   "author": "Shivam Singh Yadav",
   "license": "ISC",
