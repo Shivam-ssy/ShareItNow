@@ -75,18 +75,21 @@ async function mailer(recieveremail, filesenderemail) {
           throw new ApiError(400, "Reciever Email cannot be same as sender")
       }
 
-      fs.access(fileLocalPath, fs.constants.F_OK, (err) => {
+      let check=false
+      fs.access(fileLocalPath, fs.constants.F_OK, async(err) => {
         if (err) {
           console.error('File does not exist:', fileLocalPath);
+          check=true
         } else {
           console.log('File exists:', fileLocalPath);
           // proceed with your logic
         }
       });
-      let file;
-      file = await uploadOnCloudinary(fileLocalPath)
-      console.log(file);
-      senderuser.files.push({
+      if(check){
+        const file = await uploadOnCloudinary(fileLocalPath)
+        check=false
+        console.log(file);
+        senderuser.files.push({
           senderemail: senderuser.email,
           receiveremail: receiveremail,
           // fileurl: req.file.path,
@@ -94,9 +97,9 @@ async function mailer(recieveremail, filesenderemail) {
           fileType: file.format,
           filename: file.original_filename ? file.original_filename : new Date().toLocaleDateString(),
           sharedAt: Date.now()
-      })
+        })
 
-      recieveruser.files.push({
+        recieveruser.files.push({
           senderemail: senderuser.email,
           receiveremail: receiveremail,
           // fileurl: req.file.path,
@@ -104,24 +107,25 @@ async function mailer(recieveremail, filesenderemail) {
           fileType: file.format,
           filename: file.original_filename ? file.original_filename : new Date().toLocaleDateString(),
           sharedAt: Date.now()
-      })
-      
-      await senderuser.save();
-      await recieveruser.save();
-      await mailer(receiveremail, senderuser.email);
-      console.log(file);
-    return res
-    .status(200)
-    .json(
-      new ApiResponse(
-        200,
-        {
-         file: file.original_filename
-        },
-        "file uploaded successfully"
-      )
-      
-    )
+        })
+        
+        await senderuser.save();
+        await recieveruser.save();
+        await mailer(receiveremail, senderuser.email);
+        console.log(file);
+        return res
+        .status(200)
+        .json(
+          new ApiResponse(
+            200,
+            {
+              file: file.original_filename
+            },
+            "file uploaded successfully"
+          )
+          
+        )
+      }
   })
 
   const  getFiles= asyncHandler(async(req,res)=>{
