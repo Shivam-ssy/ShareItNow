@@ -3,9 +3,13 @@ import path from "path"
 import fs from "fs"
 const tempPath=path.resolve("./uploads")
 console.log(tempPath)
-// if (!fs.existsSync(tempPath)) {
-//   fs.mkdirSync(tempPath, { recursive: true });
-// }
+try {
+  if (!fs.existsSync(tempPath)) {
+    fs.mkdirSync(tempPath, { recursive: true });
+  }
+} catch (error) {
+  console.error('Failed to create directory:', error);
+}
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, tempPath)
