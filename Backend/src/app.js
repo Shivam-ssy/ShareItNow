@@ -3,7 +3,10 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import path from "path"
 const app = express()
-
+import dotenv from "dotenv"
+dotenv.config({
+    path: './.env'
+})
 const origin= process.env.frontend_url || "http://localhost:5173";
 app.use(cors({
   origin,
