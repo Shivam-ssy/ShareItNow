@@ -85,7 +85,7 @@ async function mailer(recieveremail, filesenderemail) {
           senderemail: senderuser.email,
           receiveremail: receiveremail,
           fileId:file?.public_id,
-          fileurl: file.url,
+          fileurl: file?.secure_url,
           filename: file.original_filename ? file.original_filename : new Date().toLocaleDateString(),
           sharedAt: Date.now(),
           fileType: file.format,
@@ -95,7 +95,7 @@ async function mailer(recieveremail, filesenderemail) {
           senderemail: senderuser.email,
           receiveremail: receiveremail,
           fileId:file?.public_id,
-          fileurl: file.url,
+          fileurl: file?.secure_url,
           fileType: file.format,
           filename: file.original_filename ? file.original_filename : new Date().toLocaleDateString(),
           sharedAt: Date.now()
