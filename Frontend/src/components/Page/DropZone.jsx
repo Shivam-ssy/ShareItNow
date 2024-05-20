@@ -103,7 +103,7 @@ function Drop({ onDrop, accept }) {
               type="file"
               name="file"
               id="fileInput"
-              {...getInputProps}
+              {...getInputProps()}
               style={{ display: "none" }}
             />
             <div className="text-center">
