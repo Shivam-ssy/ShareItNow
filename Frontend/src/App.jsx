@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <div className="w-full h-auto flex flex-col">
-        <Navigators/>
+        
       {validUser &&  <div className="h-20">
          <HeaderHome name={isuser} className=" fixed w-full" />
         </div>}
