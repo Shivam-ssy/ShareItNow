@@ -10,9 +10,13 @@ function SignUp(){
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [name, setName]=useState("")
+    const [loader,setloader]=useState(false)
+
     const handleSubmit=  async function(e){
         e.preventDefault();
-        
+        if(isStrongPassword(password)){
+          setloader(true)
+          
           const response =await fetch(config.registerUrl,{
             method:'POST',
             
@@ -24,7 +28,7 @@ function SignUp(){
               email,
               password,
             })
-          })
+          }).finally(()=>setloader(false))
           console.log(response)
           if(response.status===200 || response.status ===201){
             // alert("Register Successfully")
@@ -45,6 +49,7 @@ function SignUp(){
               toast.error("Something went wrong")
             }
           }
+        }
         
         
        
@@ -100,9 +105,12 @@ function SignUp(){
             onChange={(e) => setPassword(e.target.value)} autoComplete="password" className="w-full rounded-xl px-3 py-2 border-2 border-slate-300 "/>
             {password && !isStrongPassword(password) && (
         <div className="text-red-500">
-        Plese set atleat [a-z][A-Z][0-9][!@#$%^&*]</div>
+        Please set atleat [a-z][A-Z][0-9][!@#$%^&*]</div>
       )}
+            <div className="flex justify-center items-center">
             <input type="submit" value="Signup" className=" mt-5 mb-5 shadow cursor-pointer font-bold text-xl px-3 py-2  bg-slate-200 hover:bg-blue-500 active:bg-slate-600"/>
+            {loader &&  <div className="hypnotic h-8 w-8 "></div>}
+            </div>
             <div>Already Have Account ? <Link to="/Login" className="text-blue-800">Login</Link></div>
         </form>
        </div>

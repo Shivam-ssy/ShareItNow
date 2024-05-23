@@ -12,6 +12,7 @@ function Login(){
     
     const [email,setEmail]=useState("");
      const [password,setPassword]=useState("");
+     const [loader,setloader]=useState(false)
      const navigate=useNavigate()
     const handleSubmit= async function(e){
         e.preventDefault();
@@ -19,6 +20,7 @@ function Login(){
         if (!hasAccess) {
             await document.requestStorageAccess();
         }
+        setloader(true);
     const response= await fetch(config.loginUrl,{
      method:'POST',
      credentials:'include',
@@ -30,6 +32,7 @@ function Login(){
             password
         })
     })
+    .finally(()=>setloader(false))
     console.log(response)
         if(response.status===200){
             navigate("/Home");
@@ -67,7 +70,10 @@ function Login(){
             <label htmlFor="password" className="hidden">Password</label>
             <input type="password" required name="password" id="password" placeholder="Password" value={password}
             onChange={(e) => setPassword(e.target.value)} autoComplete="password" className="w-full rounded-xl px-3 py-2 border-2 border-slate-300 "/>
+          <div className="flex justify-center items-center ">
             <input type="submit" value="Login" className=" mt-5 mb-5 shadow cursor-pointer font-bold text-xl px-3 py-2 bg-slate-200 hover:bg-blue-500 active:bg-slate-600" />
+           {loader &&  <div className="hypnotic h-8 w-8 "></div>}
+            </div>  
             <div>Did't Have Account ?<Link to="/Signup" className="text-blue-800"> Signup</Link></div>
         </form>
        </div>

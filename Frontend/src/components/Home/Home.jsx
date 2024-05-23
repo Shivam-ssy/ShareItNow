@@ -61,7 +61,9 @@ function Home() {
       return (
         <>
           <div className="w-full h-screen bg-slate-600 flex items-center justify-center p-2">
-            <div className="bg-blue-200  shadow-xl shadow-slate-300 rounded-3xl p-7">
+            {
+              !loader ? ( <div className="hypnotic2 h-20 w-20 "></div>) : (  
+              <div className="bg-blue-200  shadow-xl shadow-slate-300 rounded-3xl p-7">
               <div>
                 <h1 className="text-red-800">
                   User Not Found Back to{" "}
@@ -70,7 +72,9 @@ function Home() {
                   </Link>
                 </h1>
               </div>
-            </div>
+            </div>)
+            }
+          
           </div>
         </>
       );
