@@ -8,41 +8,35 @@ import "./App.css";
 import Navigators from "./components/Header/Header";
 import { Outlet } from "react-router-dom";
 
-
-
 function App() {
   const [count, setCount] = useState(0);
   const [isuser, setUser] = useState("!user");
   const [validUser, setValidUser] = useState(false);
-  const location=useLocation()
-  const {params}=useParams()
-    useEffect(()=>{
-        const fetchUser= async ()=>{
-            const fetchData= await fetch(config.getCurrentUser,{
-                method:'GET',
-                credentials:'include',
-            })
-            .then((fetchData)=>fetchData.json())
-            
-            console.log(fetchData)
-            if(fetchData.statusCode===200){
-                    setValidUser(true)
-                    setUser(fetchData.data.name)
+  const location = useLocation();
+  const { params } = useParams();
+  useEffect(() => {
+    const fetchUser = async () => {
+      const fetchData = await fetch(config.getCurrentUser, {
+        method: "GET",
+        credentials: "include",
+      }).then((fetchData) => fetchData.json());
 
-            }
-        }
-        fetchUser();
-
-    },[location])
+      console.log(fetchData);
+      if (fetchData.statusCode === 200) {
+        setValidUser(true);
+        setUser(fetchData.data.name);
+      }
+    };
+    fetchUser();
+  }, [location]);
   return (
     <>
       <div className="w-full h-auto flex flex-col">
-        
-      {validUser &&  <div className="h-20">
-         <HeaderHome name={isuser} className=" fixed w-full" />
-        </div>}
-        <Outlet />
+        <div className="h-[80px] w-full">
+          <HeaderHome name={isuser} isuser={validUser} className=" fixed w-full" />
+        </div>
 
+        <Outlet />
       </div>
     </>
   );

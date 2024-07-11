@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import Login from './components/RegistorPages/Login.jsx'
-
+import 'remixicon/fonts/remixicon.css'
 import { Navigate, Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
 import GetStarted from './components/Page/GetStarted.jsx'
 import SignUp from './components/RegistorPages/Signup.jsx'
