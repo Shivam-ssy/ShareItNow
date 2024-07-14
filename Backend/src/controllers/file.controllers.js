@@ -43,7 +43,7 @@ async function mailer(recieveremail, filesenderemail) {
 
   const fileUpload= asyncHandler(async(req,res)=>{
     // console.log(req.file);
-    const fileLocalPath = req.file?.path;
+    const fileLocalPath = req.file.path;
     const temporary= path.resolve(fileLocalPath)
     console.log(temporary);
     if(!fileLocalPath){
