@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import {ApiError} from "../utils/ApiError.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { Users } from "../models/UserModule.models.js"
+import files from "../models/File.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import fs from "fs"
 import path from "path"
@@ -130,7 +131,22 @@ async function mailer(recieveremail, filesenderemail) {
     .json( new ApiResponse(200,user.files,"successfully fetch"))
   })
 
+
+  
+  const sendWithoutSignIn=asyncHandler(async(req,res)=>{
+    const filePath=req.file?.path
+    const tempPath=path.resolve(filePath)
+    if(!filePath){
+      throw new ApiError(400, "Please upload a valid file");
+   }
+   const data=req.body
+   console.log(data)
+   const file = await uploadOnCloudinary(tempPath)
+   console.log(file)
+   
+  })
   export {
     fileUpload,
-    getFiles
+    getFiles,
+    sendWithoutSignIn
   } ;

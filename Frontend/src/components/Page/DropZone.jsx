@@ -142,7 +142,7 @@ function Drop({ onDrop, accept }) {
            onChange={(e)=>{setRecEmail(e.target.value)}}
            />
            <div className="flex justify-around items-center">
-           <input className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="reset" value="Reset" />
+           <input onClick={()=>{setfile(null); setRecEmail("")}} className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="reset" value="Reset" />
            <input onClick={(e)=>{handleSubmit(e)}} className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="submit" value="Upload" />
            </div>
         </div>
