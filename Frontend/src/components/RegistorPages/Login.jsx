@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate,Link } from "react-router-dom";
 import { useState } from "react";
 import config from "../../../Conf/cofig";
-import axios from "axios"
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+import {useDispatch} from "react-redux"
+import { login as authLogin } from "../../store/auth.slice.js";
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,6 +14,7 @@ function Login(){
     const [email,setEmail]=useState("");
      const [password,setPassword]=useState("");
      const [loader,setloader]=useState(false)
+     const dispatch = useDispatch()
      const navigate=useNavigate()
     const handleSubmit= async function(e){
         e.preventDefault();
@@ -35,6 +37,8 @@ function Login(){
     .finally(()=>setloader(false))
     console.log(response)
         if(response.status===200){
+            const userData=await response.json()                     
+            dispatch(authLogin(userData.data.user))
             navigate("/Home");
         }
         else{

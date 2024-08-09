@@ -4,6 +4,7 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { Users } from "../models/UserModule.models.js"
 import files from "../models/File.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { v4 as uuidv4 } from "uuid";
 import fs from "fs"
 import path from "path"
 import nodemailer from 'nodemailer'
@@ -139,12 +140,38 @@ async function mailer(recieveremail, filesenderemail) {
     if(!filePath){
       throw new ApiError(400, "Please upload a valid file");
    }
-   const data=req.body
-   console.log(data)
-   const file = await uploadOnCloudinary(tempPath)
-   console.log(file)
-   
+   try {
+    
+     const data=req.body
+    //  console.log(data)
+     const file = await uploadOnCloudinary(tempPath)
+    //  console.log(file)
+     const dbFile= await files.create({
+       uuid:uuidv4(),
+       senderemail:data.senderEmail,
+       name:data.name,
+       receiveremail: data.recieverEmail,
+       fileId:file?.public_id,
+       fileurl: file?.secure_url,
+       fileType: file.format,
+       filename: file.original_filename ? file.original_filename : new Date().toLocaleDateString(),
+       sharedAt: Date.now(),
+       message:data.message  
+     })
+     if(dbFile){
+      console.log(dbFile);
+      
+      return res.status(200)
+      .json( new ApiResponse(200,dbFile,"Shared File Successfully"))
+     }
+   } catch (error) {
+    console.log(`Something went wrong while Uploadig`,error);
+    throw new ApiError(500,"Something went wrong while uploading the file",)
+   }
+
   })
+
+
   export {
     fileUpload,
     getFiles,

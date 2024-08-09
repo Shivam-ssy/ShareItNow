@@ -1,18 +1,21 @@
 import mongoose from "mongoose";
 
-const fileSchema =new mongoose.Schema(
+const  unkfile=new mongoose.Schema(
     {
         uuid:{type:String,required:true},
-        filename:{type:String, required:true},
-        url:{type:String,required:true},
-        size:{type:Number,required:true},
-        senderEmail:{type:String,required:true},
-        recieverEmail:{type:String,required:true},
+        senderemail: {required:true , type:String},
+        receiveremail: {required:true , type:String},
+        name:{required:true,type:String},
+        fileId:{required:true,type:String},
+        fileurl: {required:true , type:String},
+        filename: {required:true , type:String},
+        sharedAt: {required:true , type:Date},
+        fileType : {type:String},
         message:{type:String}
     },{
         timestamps:true
     },
   
 )
-const files=mongoose.model('Files',fileSchema)
+const files=mongoose.model('unkfile',unkfile)
 export default files 

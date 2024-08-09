@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import config from "../../../Conf/cofig";
 import { useNavigate } from "react-router-dom";import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
@@ -7,30 +8,29 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
-    const [email,setEmail]=useState("");
-    const [name, setName]=useState("")
+    const data=useSelector((state)=>state.auth.userData)
     const [oldPassword, setOldPassword]=useState("")
     const [newPassword, setNewPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
     const [ispasswordChange, setpasswodChange] = useState(false);
     const [validUser, setValidUser] = useState(false);
     const navigate=useNavigate()
-    useEffect(()=>{
-        const fetchUser= async ()=>{
-            const fetchData= await fetch(config.getCurrentUser,{
-                method:'GET',
-                credentials:'include',
-            }).then((res)=>res.json())
-            console.log(fetchData)
-            if(fetchData.statusCode===200){
-                    setValidUser(true)
-                    setEmail(fetchData.data.email)
-                    setName(fetchData.data.name)
-            }
-        }
-        fetchUser();
+    // useEffect(()=>{
+    //     const fetchUser= async ()=>{
+    //         const fetchData= await fetch(config.getCurrentUser,{
+    //             method:'GET',
+    //             credentials:'include',
+    //         }).then((res)=>res.json())
+    //         console.log(fetchData)
+    //         if(fetchData.statusCode===200){
+    //                 setValidUser(true)
+    //                 setEmail(fetchData.data.email)
+    //                 setName(fetchData.data.name)
+    //         }
+    //     }
+    //     fetchUser();
   
-    },[])
+    // },[])
     const logout= async ()=>{
       const response=await  fetch(config.logout,{method:"POST",credentials: 'include'})
       if(response.ok){
@@ -63,7 +63,6 @@ function Profile() {
       }
       setpasswodChange(!ispasswordChange)
     }
-  console.log(name)  
   return (
     <>
       <div
@@ -91,7 +90,7 @@ function Profile() {
             name="name"
             id="name"
             placeholder="Full Name"
-            value={name ?? ""}
+            value={data?.name?? ""}
             readOnly
             className="w-full rounded-xl focus:outline-none px-3 py-2 border-slate-300 border-2 "
           />
@@ -105,7 +104,7 @@ function Profile() {
             name="email"
             id="email"
             placeholder="Email"
-            value={email ?? ""}   
+            value={data?.email ?? ""}   
             readOnly
             className="w-full rounded-xl focus:outline-none px-3 py-2 border-slate-300 border-2 "
           />

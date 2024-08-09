@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function HeaderHome({ name, className, isuser }) {
+import { useSelector } from "react-redux";
+function HeaderHome({  className }) {
+  const isuser=useSelector((state)=>state.auth.status)
+  const name=useSelector((state)=>state.auth.userData)
+  // console.log("user data from header home",name?.data.name)
   return (
     <>
       <div
@@ -26,16 +30,20 @@ function HeaderHome({ name, className, isuser }) {
               {" "}
               <div className="outline-none ms-9 flex items-center gap-2 px-2 py-1 font-bold text-white">
                 <img width="20px" src="/user-3-fill.svg" alt="" />
-                {name}
+                {name?.name}
               </div>
             </Link>
           </div>
         )}
+        {
+          !isuser &&
+          
         <div className="flex gap-5">
           <Link to="/Login">  <button className="px-4 py-2  block rounded-lg hover:scale-105 ease-out hover:bg-[#ce3f21] bg-gray-100 font-bold  ">Login</button></Link>
           <Link to="/SignUp"><button className="px-4 py-2 hidden sm:block rounded-lg hover:scale-105 ease-out bg-[#ce3f21] hover:bg-gray-100 font-bold">SignUp</button></Link>
 
         </div>
+        }
         {/* <div className="md:block cursor-pointer hidden">
           <img className="w-8" src="/menu-5-fill.svg" alt="" />
         </div> */}

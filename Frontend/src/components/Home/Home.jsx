@@ -5,32 +5,37 @@ import HeaderHome from "../Header/HeaderHome";
 import Drop from "../Page/DropZone";
 import Navigators from "../Header/Header";
 import config from "../../../Conf/cofig";
+import { useSelector } from "react-redux";
 
 function Home() {
-  const [isuser, setUser] = useState("");
-  const [validUser, setValidUser] = useState(false);
-  const [loader, setloader] = useState(false);
-  useEffect(()=>{
-      const fetchUser= async ()=>{
-          const fetchData= await fetch(config.getCurrentUser,{
-              method:'GET',
-              credentials:'include',
-          })
-          .then((fetchData)=>fetchData.json())
-          .finally(()=>setloader(false))
-          console.log(fetchData)
-          if(fetchData.statusCode===200){
-                  setValidUser(true)
-                  setUser(fetchData.data.name)
+  // const [isuser, setUser] = useState("");
+  // const [validUser, setValidUser] = useState(false);
+  // const [loader, setloader] = useState(false);
+  // const auth=useSelector((state)=>state.auth.userData)
+  // useEffect(()=>{
+  //     // const fetchUser= async ()=>{
+  //     //     const fetchData= await fetch(config.getCurrentUser,{
+  //     //         method:'GET',
+  //     //         credentials:'include',
+  //     //     })
+  //     //     .then((fetchData)=>fetchData.json())
+  //     //     .finally(()=>setloader(false))
+  //     //     console.log(fetchData)
+  //     //     if(fetchData.statusCode===200){
+  //     //             setValidUser(true)
+  //     //             setUser(fetchData?.data.name)
 
-          }
-      }
-      fetchUser();
+  //     //     }
+  //     // }
+  //     // fetchUser();
+  //     if(auth){
+  //       setUser(auth)
+  //       setValidUser(true)
+  //       setloader(false)
+  //     }
 
-  },[])
-  console.log(isuser);
-  if (!loader) {
-    if (validUser) {
+  // },[auth])
+    // if (validUser) {
       return (
         <>
           <div
@@ -57,29 +62,29 @@ function Home() {
           </div>
         </>
       );
-    } else {
-      return (
-        <>
-          <div className="w-full h-screen bg-slate-600 flex items-center justify-center p-2">
-            {
-              !loader ? ( <div className="hypnotic2 h-20 w-20 "></div>) : (  
-              <div className="bg-blue-200  shadow-xl shadow-slate-300 rounded-3xl p-7">
-              <div>
-                <h1 className="text-red-800">
-                  User Not Found Back to{" "}
-                  <Link to="/Login" className="text-blue-800">
-                    Login
-                  </Link>
-                </h1>
-              </div>
-            </div>)
-            }
+    // } else {
+    //   return (
+    //     <>
+    //       <div className="w-full h-screen bg-slate-600 flex items-center justify-center p-2">
+    //         {
+    //           !loader ? ( <div className="hypnotic2 h-20 w-20 "></div>) : (  
+    //           <div className="bg-blue-200  shadow-xl shadow-slate-300 rounded-3xl p-7">
+    //           <div>
+    //             <h1 className="text-red-800">
+    //               User Not Found Back to{" "}
+    //               <Link to="/Login" className="text-blue-800">
+    //                 Login
+    //               </Link>
+    //             </h1>
+    //           </div>
+    //         </div>)
+    //         }
           
-          </div>
-        </>
-      );
-    }
+    //       </div>
+    //     </>
+    //   );
+    // }
   }
-}
+
 
 export default Home;

@@ -1,14 +1,36 @@
 import React, { useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import config from "../../../Conf/cofig";
  function LandingPage(){
     const [senderBox,setSenderBox]=useState(false)
     const [name,setName]=useState("")
+    const [file,setFile]=useState()
     const [senderEmail,setSenderEmail]=useState("")
     const [recieverEmail,setRecieverEmail]=useState("")
     const sendfile= async ()=>{
-            
+        console.log(file);
+        if(file.lenght>1 || file[0].size>100*1024*1024){
+            toast.warn(`There is More than 1 file or file is more than 100MB ${file[0].size}`)
+        }
+        else{
+            const formdata=new FormData()
+            formdata.append("name",name)
+            formdata.append("file",file[0])
+            formdata.append("senderEmail",senderEmail)
+            formdata.append("recieverEmail",recieverEmail)
+            const response= await fetch(config.uploadAnyUrl,{
+                method:"POST",
+                body:formdata
+            }).then((res)=>res.json())
+            console.log(response);
+        }
     }
     return(
         <>
+              <ToastContainer className="mt-20" position="top-right" autoClose={5000} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+
             <div  className="w-full h-auto py-10 md:h-[calc(100vh-80px)] flex flex-col justify-center gap-12 px-5 items-center bg-center bg-cover bg-[url('./image.jpg')]">
             {
                 !senderBox &&
@@ -35,12 +57,12 @@ import React, { useState } from "react";
                         <input value={senderEmail} onChange={(e)=>setSenderEmail(e.target.value)} type="email" className="h-10 md:w-96 rounded-md px-3" name="senderEmail" id="SenderEmail" placeholder="Sender Email" required/>
                         <input value={recieverEmail} onChange={(e)=>setRecieverEmail(e.target.value)} type="email" className="h-10 md:w-96 rounded-md px-3" name="reciverEmail" id="RecieverEmail" placeholder="Reciever Email" required />
                         <div>
-                        <input type="file" />
+                        <input  onChange={(e)=>setFile(e.target.files)} type="file" />
                         <p>(File should be less than 100MB)</p>
 
                         </div>
                         <textarea name="message" id="" cols="30" rows="10"></textarea>
-                        <button className="outline-none text-white hover:bg-gray-800 bg-gray-900 rounded-md py-2  font-thin text-lg" type="submit"> Submit</button>
+                        <button onClick={sendfile} className="outline-none text-white hover:bg-gray-800 bg-gray-900 rounded-md py-2  font-thin text-lg" type="submit"> Submit</button>
                     </div>
                    }
                    
