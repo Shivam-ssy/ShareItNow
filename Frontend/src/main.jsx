@@ -22,11 +22,16 @@ import Myfile from "./components/mainRoutes/Myfiles.jsx";
 import SharePage from "./components/mainRoutes/Share.jsx";
 import DirectShare from "./components/mainRoutes/DirectShare.jsx";
 import Profile from "./components/mainRoutes/Profile.jsx";
+import LandingPage from "./components/Page/LandingPage.jsx";
 const data = localStorage.getItem("token");
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index path="/" element={<GetStarted />} />
+      <Route index path="/" element={
+        <ProtectedRoute>
+          <GetStarted />
+        </ProtectedRoute>
+      } />
       <Route path="/Login" element={<Login />} />
       <Route path="/Signup" element={<SignUp />} />
       <Route
@@ -61,7 +66,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
-      <Route path="/download/:uuid" element={<Download />} />
+      <Route path="/download/:uuid" element={<GetStarted />} />
       <Route
         path="/home/profile"
         element={

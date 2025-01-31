@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 function HeaderHome({  className }) {
   const isuser=useSelector((state)=>state.auth.status)
   const name=useSelector((state)=>state.auth.userData)

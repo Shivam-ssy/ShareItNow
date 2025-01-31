@@ -1,14 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import config from "../../../Conf/cofig";
-import { useNavigate } from "react-router-dom";import { ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
     const data=useSelector((state)=>state.auth.userData)
+    const dispatch=useDispatch()
     const [oldPassword, setOldPassword]=useState("")
     const [newPassword, setNewPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
@@ -32,9 +34,23 @@ function Profile() {
   
     // },[])
     const logout= async ()=>{
-      const response=await  fetch(config.logout,{method:"POST",credentials: 'include'})
-      if(response.ok){
-        window.location.href = "/";
+      try {
+        
+        const response=await  fetch(config.logout,{method:"POST",credentials: 'include'}).then((res)=>res.json())
+        .finally((res)=>console.log(res)
+        )
+        console.log("response at profile",response);
+        
+        if(response.statusCode===200){
+          window.location.href="/"
+          dispatch(logout())
+        }
+        // else{
+        //   toast.error("something")
+        // }
+      } catch (error) {
+        console.log("error at profile ",error);
+        
       }
     }
     const changePassword= async ()=>{

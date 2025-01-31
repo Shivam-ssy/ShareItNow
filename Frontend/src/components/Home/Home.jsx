@@ -39,7 +39,7 @@ function Home() {
       return (
         <>
           <div
-            className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-items-center p-2"
+            className="w-full min-h-[calc(100vh-80px)] grid grid-cols-1 md:grid-cols-2 items-center justify-items-center p-2"
             style={{
               backgroundImage: `linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)`
             }}

@@ -171,9 +171,29 @@ async function mailer(recieveremail, filesenderemail) {
 
   })
 
-
+  const getFileInfo=asyncHandler(async (req,res)=>{
+    const {uuid}=req.params
+    // console.log("this is uuid",uuid);
+    
+    if (!uuid) {
+      throw new ApiError(400, "Please provide a valid uuid");
+    }
+    try {
+      const file=await files.findOne({uuid})
+      if(file){
+        return res.status(200)
+        .json(new ApiResponse(200,file,"File Info"))
+    }
+    return res.status(404).json(new ApiResponse(404,"File Not Found"))
+  }
+    catch (error){
+      console.log(error)
+      throw new ApiError(500,"Something went wrong while fetching the file info",)
+    }
+  })
   export {
     fileUpload,
     getFiles,
-    sendWithoutSignIn
+    sendWithoutSignIn,
+    getFileInfo
   } ;
