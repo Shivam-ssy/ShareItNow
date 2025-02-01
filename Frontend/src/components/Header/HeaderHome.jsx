@@ -8,7 +8,7 @@ function HeaderHome({  className }) {
   return (
     <>
       <div
-        className={`flex z-50 justify-between gap-10  md:gap-40 lg:gap-0  items-center bg-gray-900 px-5  lg:px-10 py-5 ${className} `}
+        className={`flex z-50 justify-between gap-10  md:gap-40 lg:gap-0  items-center bg-gray-900 px-5  lg:px-10 py-6 md:py-5 ${className} `}
       >
         <h1 className="font-bold shadow text-3xl md:text-5xl">ShareNest</h1>
         {isuser && (

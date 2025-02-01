@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import LandingPage from "./LandingPage";
 import { useParams } from "react-router-dom";
 import DownloadCard from "../DownloadCard";
+import DocumentationPage from "../Documentation";
 function GetStarted() {
   const { uuid } = useParams();
   const [showDownloadCard, setShowDownloadCard] = useState(false);
@@ -25,6 +26,7 @@ function GetStarted() {
 
           <Page2 />
           <Page3 />
+          <DocumentationPage/>
           <Footer />
         </div>
       </div>

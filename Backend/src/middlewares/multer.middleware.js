@@ -1,25 +1,16 @@
+
+// // Configure Cloudinary
+import { cloudinary } from "../utils/cloudinary.js";
+import {CloudinaryStorage} from "multer-storage-cloudinary"
 import multer from "multer";
-import path from "path"
-import fs from "fs"
-const tempPath=path.resolve("./uploads")
-console.log(tempPath)
-try {
-  if (!fs.existsSync(tempPath)) {
-    fs.mkdirSync(tempPath, { recursive: true });
-  }
-} catch (error) {
-  console.error('Failed to create directory:', error);
-}
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, tempPath)
-    },
-    filename: function (req, file, cb) {
-      
-      cb(null, file.originalname)
-    }
-  })
-  
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'uploads', 
+    allowed_formats: ['jpg', 'png', 'jpeg', 'pdf'], // Allowed formats
+  },
+});
+
 export const upload = multer({ 
     storage,
     limit:{filesize:1000000*200} 
