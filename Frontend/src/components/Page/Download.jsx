@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderHome from "../Header/HeaderHome";
 import config from "../../../Conf/cofig";
-  function Download(){
+  function Download({openModal,closeModal}){
         const {uuid}=useParams();
         const downloadPageUrl=`${config.server}/files/${uuid}`
         const [name,setName]=useState("undefined");
@@ -28,7 +28,6 @@ import config from "../../../Conf/cofig";
         
     return (
         <>
-         <HeaderHome/>
             <div className="w-full h-screen flex justify-center items-center flex-col bg-slate-300"> 
                 <div className="flex justify-center items-center flex-col p-10 rounded-xl bg-blue-700" >
                 <h1 className="text-xl font-bold shadow1 mb-3">You can Download Your file</h1>

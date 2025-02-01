@@ -4,7 +4,7 @@ function Page1() {
   return (
     <>
     <div>
-      <div className="w-full h-2/5 md:h-screen flex  justify-center gap-2 items-center py-5 bg-no-repeat bg-center bg-cover " id="home" style={{backgroundImage:`url(./image.jpg)`,}}>
+      <div className="w-full h-2/5 md:h-screen flex  justify-center gap-2 items-center py-5 bg-no-repeat bg-center bg-cover " id="home" style={{backgroundImage:`url(/image.jpg)`,}}>
         <div className="flex justify-center items-center flex-col py-5 px-5 bg-slate-100 bg-opacity-50 shadow-red-500 shadow-lg rounded-3xl ">
         <h1 className="font-extrabold text-5xl shadow md:text-9xl">ShareItNow</h1>
         <div className="flex flex-col mt-2 w-full px-8 md:w-fit md:flex-row gap-2">

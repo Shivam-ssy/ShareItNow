@@ -95,10 +95,10 @@ function Drop({ onDrop, accept }) {
       <div className="w-full h-5/6 md:h-screen flex md:flex-row flex-col justify-around items-center">
         <div className="dropbox shadow-xl shadow-slate-300 rounded-3xl p-7">
           <div
-            className="w-98  flex flex-col justify-center items-center p-5 gap-2 h-80 relative border-dashed border-2 border-slate-900  rounded-3xl"
+            className="md:w-96 w-52 h-52 flex flex-col justify-center items-center p-2 md:p-5 gap-2 md:h-80 relative border-dashed border-2 border-slate-900  rounded-3xl"
             {...getRootProps()}
           >
-            <img className="h-3/4" src="/file.png" alt="" draggable="false" />
+            <img className="md:h-3/4 md:w-80 w-36 h-32" src="/file.png" alt="" draggable="false" />
             <input
               type="file"
               name="file"
@@ -123,14 +123,14 @@ function Drop({ onDrop, accept }) {
             </div>
           </div>
         </div>
-      <div className=" bg-blue-200 flex p-5 gap-5 flex-col justify-center items-start">
+      <div className=" bg-blue-200 rounded-3xl flex p-5 gap-5 flex-col justify-center items-start">
       {file && <div>Selected file: {file[0]?.name}</div>
       } 
       {
         progress > 1?( <div>Uploading: {progress}%</div>):(<div></div>)
       } 
      
-        <div className="flex flex-col gap-2 ">
+        <div className="flex flex-col  gap-2 ">
           <label className="font-bold" htmlFor="email">Receiver Email Address</label>
           <input
            type="email" 
@@ -142,7 +142,7 @@ function Drop({ onDrop, accept }) {
            onChange={(e)=>{setRecEmail(e.target.value)}}
            />
            <div className="flex justify-around items-center">
-           <input className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="reset" value="Reset" />
+           <input onClick={()=>{setfile(null); setRecEmail("")}} className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="reset" value="Reset" />
            <input onClick={(e)=>{handleSubmit(e)}} className="bg-[#ce3f21] font-bold py-2 px-2 rounded-lg transition-all ease-out hover:bg-black hover:text-white hover:px-3 cursor-pointer" type="submit" value="Upload" />
            </div>
         </div>

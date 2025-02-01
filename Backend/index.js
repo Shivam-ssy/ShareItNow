@@ -6,7 +6,6 @@ import express from "express";
 import Files from "./src//models/File.models.js";
 import connectDB from "./src/db/Db.js";
 import path from "path";
-import { v4 as uuidv4 } from "uuid";
 const port=process.env.PORT || 3000
 import { app } from "./src/app.js";
 

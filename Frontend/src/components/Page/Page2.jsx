@@ -11,7 +11,7 @@ function Page2(){
                 </p>
             </div>
             <div className="w-9/12 md:w-1/5 mt-4">
-                <img className="rounded-3xl" src="./sharepage.jpg" alt="" />
+                <img className="rounded-3xl" src="/sharepage.jpg" alt="" />
             </div>
            </div>
         </>

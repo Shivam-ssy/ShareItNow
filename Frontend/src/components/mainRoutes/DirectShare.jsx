@@ -46,7 +46,7 @@ function DirectShare() {
   };
   return (
     <>
-      <div className="w-full h-screen  bg-[url('/background.jpg')] bg-center bg-contain">
+      <div className="w-full min-h-[calc(100vh-80px)]  bg-[url('/background.jpg')] bg-center bg-contain">
         {
             dNone &&  <div
             className={`w-full h-screen flex  justify-center gap-10 items-center`}

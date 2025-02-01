@@ -3,7 +3,7 @@ import { initialize } from "../utils/FileRemover.js";
 const connectDB= async ()=>{
     try{
 
-        await mongoose.connect(`${process.env.DB_URL}`)
+        await mongoose.connect(`${process.env.DB_URL}`,)
         .then(()=>{
             console.log ("connection successfull")
             initialize()

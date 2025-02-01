@@ -97,7 +97,7 @@ const loginUser = asyncHandler(async (req, res) =>{
 
     const loggedInUser = await Users.findById(user._id).select("-password -refreshToken")
 
-    
+    console.log(loggedInUser)
     return res
     .status(200)
     .cookie("accessToken", accessToken,options)
@@ -106,7 +106,7 @@ const loginUser = asyncHandler(async (req, res) =>{
         new ApiResponse(
             200, 
             {
-                user: loggedInUser, accessToken, refreshToken
+                user: loggedInUser
             },
             "User logged In Successfully"
         )
