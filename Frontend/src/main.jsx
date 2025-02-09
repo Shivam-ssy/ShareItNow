@@ -26,6 +26,7 @@ import LandingPage from "./components/Page/LandingPage.jsx";
 const data = localStorage.getItem("token");
 const router = createBrowserRouter(
   createRoutesFromElements(
+ 
     <Route path="/" element={<App />}>
       <Route index path="/" element={
         <ProtectedRoute>
